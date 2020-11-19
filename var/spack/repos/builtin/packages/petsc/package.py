@@ -131,6 +131,12 @@ class Petsc(Package):
             description='Activates support for Saws')
     variant('libyaml', default=False,
             description='Activates support for YAML')
+    variant('triangle', default=False,
+            description='MESH 2D')
+    variant('ctetgen', default=False,
+            description='MESH 3D')
+    variant('chaco', default=False,
+            description='chaco')
 
     # 3.8.0 has a build issue with MKL - so list this conflict explicitly
     conflicts('^intel-mkl', when='@3.8.0')
@@ -322,6 +328,14 @@ class Petsc(Package):
             options.append('--with-x=1')
         else:
             options.append('--with-x=0')
+
+        if '+triangle' in spec:
+            options.append('--download-triangle')
+        if '+ctetgen' in spec:
+            options.append('--download-ctetgen')
+        if '+chaco' in spec:
+            options.append('--download-chaco')
+
 
         if 'trilinos' in spec:
             options.append('--with-cxx-dialect=C++11')
