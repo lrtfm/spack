@@ -32,6 +32,8 @@ class Ninja(Package):
     version("1.7.2", sha256="2edda0a5421ace3cf428309211270772dd35a91af60c96f93f90df6bc41b16d9")
     version("1.6.0", sha256="b43e88fb068fe4d92a3dfd9eb4d19755dae5c33415db2e9b7b61b4659009cde7")
 
+    patch("ninja-v1.11.0-fixbug-SIGFPE-error.patch", when="@1.11.0")
+
     depends_on("python", type="build")
 
     phases = ["configure", "install"]
