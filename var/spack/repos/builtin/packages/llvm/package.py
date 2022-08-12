@@ -572,7 +572,7 @@ class Llvm(CMakePackage, CudaPackage):
             define("LLVM_REQUIRES_RTTI", True),
             define("LLVM_ENABLE_RTTI", True),
             define("LLVM_ENABLE_EH", True),
-            define("LLVM_ENABLE_TERMINFO", False),
+            define("LLVM_ENABLE_TERMINFO", True),
             define("LLVM_ENABLE_LIBXML2", False),
             define("CLANG_DEFAULT_OPENMP_RUNTIME", "libomp"),
             define("PYTHON_EXECUTABLE", python.command.path),
