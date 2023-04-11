@@ -258,6 +258,8 @@ class Petsc(Package, CudaPackage, ROCmPackage):
     depends_on("hypre~int64", when="+hypre~int64")
     depends_on("hypre+mpi", when="+hypre+mpi")
 
+    depends_on("hpddm", when="+hpddm")
+
     depends_on("superlu-dist@:4.3~int64", when="@3.4.4:3.6.4+superlu-dist+mpi~int64")
     depends_on("superlu-dist@:4.3+int64", when="@3.4.4:3.6.4+superlu-dist+mpi+int64")
     depends_on("superlu-dist@5.0.0:5.1.3~int64", when="@3.7.0:3.7+superlu-dist+mpi~int64")
@@ -558,7 +560,8 @@ class Petsc(Package, CudaPackage, ROCmPackage):
         # For the moment, HPDDM does not work as a dependency
         # using download instead
         if "+hpddm" in spec:
-            options.append("--download-hpddm")
+            # options.append("--download-hpddm")
+            options.append("--with-hpddm-dir=%s" % spec["hpddm"].prefix)
 
         return options
 
