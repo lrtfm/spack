@@ -102,6 +102,14 @@ class Slepc(Package, CudaPackage, ROCmPackage):
         when="@3.13.0:+blopex",
     )
 
+    resource(
+        name="hpddm",
+        git="https://github.com/hpddm/hpddm.git",
+        branch="main",
+        placement="arch-spackbuild/externalpackages/git.hpddm",
+        when="+hpddm",
+    )
+
     def revert_kokkos_nvcc_wrapper(self):
         # revert changes by kokkos-nvcc-wrapper
         if self.spec.satisfies("^kokkos+cuda+wrapper"):

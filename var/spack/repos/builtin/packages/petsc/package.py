@@ -143,6 +143,14 @@ class Petsc(Package, CudaPackage, ROCmPackage):
     variant("kokkos", default=False, description="Activates support for kokkos and kokkos-kernels")
     variant("fortran", default=True, description="Activates fortran support")
 
+    resource(
+        name="hpddm",
+        git="https://github.com/hpddm/hpddm.git",
+        branch="main",
+        placement="arch-spackbuild/externalpackages/git.hpddm",
+        when="+hpddm",
+    )
+
     # 3.8.0 has a build issue with MKL - so list this conflict explicitly
     conflicts("^intel-mkl", when="@3.8.0")
 
@@ -367,6 +375,7 @@ class Petsc(Package, CudaPackage, ROCmPackage):
     def configure_options(self):
         spec = self.spec
         options = [
+            "PETSC_ARCH=arch-spackbuild",
             "--with-ssl=0",
             "--download-c2html=0",
             "--download-sowing=0",
