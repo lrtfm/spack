@@ -192,6 +192,7 @@ class Petsc(Package, CudaPackage, ROCmPackage):
     patch("xlf_fix-dup-petscfecreate.patch", when="@3.11.0")
     patch("disable-DEPRECATED_ENUM.diff", when="@3.14.1 +cuda")
     patch("revert-3.18.0-ver-format-for-dealii.patch", when="@3.18.0")
+    patch("some_c11_c17_compilers_break.diff", when="@3.19.0")
 
     depends_on("diffutils", type="build")
 
